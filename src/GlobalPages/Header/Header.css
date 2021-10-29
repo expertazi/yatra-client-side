@@ -1,0 +1,16 @@
+.main-menu {
+  text-align: center;
+}
+.main-menu a {
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar-nav span {
+  color: white !important;
+}
+.navbar-nav a {
+  color: white !important;
+}

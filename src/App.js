@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import NotFoundPage from "./GlobalPages/NotFoundPage/NotFoundPage";
+import Header from "./GlobalPages/Header/Header";
+import Login from "./GlobalPages/Login/Login";
+import EventsDetails from "./Pages/EventsDetails/EventsDetails";
+import Contact from "./Pages/Contact/Contact";
+import initializeAuthentication from "./GlobalPages/Login/Firebase/Firebase.init";
+import AuthProvider from "./contexts/AuthProvider";
+import PrivateRoute from "./GlobalPages/Login/PrivateRoute/PrivateRoute";
+import MyOrders from "./Pages/MyOrders/MyOrders";
+import AllOrders from "./Pages/AllOrders/AllOrders";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthProvider>
+        <Router>
+          <Header></Header>
+          <Switch>
+            <Route exact path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/login">
+              <Login></Login>
+            </Route>
+            <Route exact path="/allOrders">
+              <AllOrders></AllOrders>
+            </Route>
+            <PrivateRoute exact path="/myOrders">
+              <MyOrders></MyOrders>
+            </PrivateRoute>
+            <PrivateRoute path="/eventsDetails/:eventsDeta">
+              <EventsDetails></EventsDetails>
+            </PrivateRoute>
+            <Route path="/contact">
+              <Contact></Contact>
+            </Route>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="*">
+              <NotFoundPage></NotFoundPage>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
