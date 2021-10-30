@@ -14,6 +14,8 @@ import AuthProvider from "./contexts/AuthProvider";
 import PrivateRoute from "./GlobalPages/Login/PrivateRoute/PrivateRoute";
 import MyOrders from "./Pages/MyOrders/MyOrders";
 import AllOrders from "./Pages/AllOrders/AllOrders";
+import Footer from "./GlobalPages/Footer/Footer";
+import AllEvents from "./Pages/AllEvents/AllEvents";
 
 function App() {
   return (
@@ -28,9 +30,12 @@ function App() {
             <Route exact path="/login">
               <Login></Login>
             </Route>
-            <Route exact path="/allOrders">
-              <AllOrders></AllOrders>
+            <Route exact path="/allEvents">
+              <AllEvents></AllEvents>
             </Route>
+            <PrivateRoute exact path="/allOrders">
+              <AllOrders></AllOrders>
+            </PrivateRoute>
             <PrivateRoute exact path="/myOrders">
               <MyOrders></MyOrders>
             </PrivateRoute>
@@ -47,6 +52,7 @@ function App() {
               <NotFoundPage></NotFoundPage>
             </Route>
           </Switch>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>

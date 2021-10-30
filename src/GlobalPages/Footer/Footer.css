@@ -1,0 +1,14 @@
+.footer-main {
+  background-color: black;
+  padding: 30px 0;
+}
+.main-footer-ul {
+  text-align: start;
+  color: white;
+  padding-left: 5rem !important;
+}
+.main-footer-ul li {
+  text-decoration: none;
+  list-style: none;
+  margin-bottom: 9px;
+}

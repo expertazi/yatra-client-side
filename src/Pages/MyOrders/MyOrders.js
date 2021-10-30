@@ -9,21 +9,9 @@ const MyOrders = () => {
   const { email } = useParams();
   const [orders, setOrders] = useState([]);
 
-  //   This is For Update
-
-  // useEffect(() => {
-  //   console.log(user?.email);
-  //   fetch(`http://localhost:5000/users/${user?.email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setOrders(data);
-  //       console.log(data);
-  //     });
-  // }, []);
-
   const handleUpdate = (id) => {
     const updateStatus = { status: "Approved" };
-    const url = `http://localhost:5000/users/${id}`;
+    const url = `https://rocky-savannah-17704.herokuapp.com/users/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -36,7 +24,9 @@ const MyOrders = () => {
         console.log(data);
         if (data.modifiedCount) {
           alert("Update Succeflly");
-          fetch(`http://localhost:5000/users/${user?.email}`)
+          fetch(
+            `https://rocky-savannah-17704.herokuapp.com/users/${user?.email}`
+          )
             .then((res) => res.json())
             .then((data) => {
               setOrders(data);
@@ -49,7 +39,7 @@ const MyOrders = () => {
   //   This is For Delete
 
   const handleDeelete = (id) => {
-    const url = `http://localhost:5000/users/${id}`;
+    const url = `https://rocky-savannah-17704.herokuapp.com/users/${id}`;
     fetch(url, {
       method: "DELETE",
     })
@@ -66,7 +56,7 @@ const MyOrders = () => {
 
   useEffect(() => {
     console.log(user?.email);
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(`https://rocky-savannah-17704.herokuapp.com/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);

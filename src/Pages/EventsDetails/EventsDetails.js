@@ -12,7 +12,7 @@ const EventsDetails = () => {
   const { eventsDeta } = useParams();
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://rocky-savannah-17704.herokuapp.com/events")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
@@ -28,12 +28,14 @@ const EventsDetails = () => {
     data.status = "Pending";
     console.log(data.email);
     console.log(data.eventName);
-    axios.post("http://localhost:5000/users", data).then((res) => {
-      if (res.data.insertedId) {
-        alert("Registration Succefull");
-        reset();
-      }
-    });
+    axios
+      .post("https://rocky-savannah-17704.herokuapp.com/users", data)
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Registration Succefull");
+          reset();
+        }
+      });
   };
 
   return (
@@ -42,12 +44,24 @@ const EventsDetails = () => {
         <Row>
           <Col className="my-5" md={6}>
             <h3>Events Name : {ExactIteam[0]?.name}</h3>
-            <img className="img-fluid" src={ExactIteam[0]?.img} alt="" />
+            <img className="img-fluid my-3" src={ExactIteam[0]?.img} alt="" />
             <h3> Price : {ExactIteam[0]?.price}</h3>
             <p>description : {ExactIteam[0]?.description}</p>
           </Col>
           <Col md={6} className="mt-5 d-flex">
             <div className="add-reg-form">
+              <p className="text-start fw-bold global-left">
+                Start Date : {ExactIteam[0]?.start_date}
+              </p>
+              <p className="text-start fw-bold global-left">
+                End Date : {ExactIteam[0]?.end_date}
+              </p>
+              <p className="text-start fw-bold global-left">
+                Room : {ExactIteam[0]?.room}
+              </p>
+              <p className="text-start fw-bold global-left">
+                Address : {ExactIteam[0]?.address}
+              </p>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                   placeholder="Input Name"

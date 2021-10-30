@@ -7,6 +7,7 @@ import useAuth from "../../contexts/useAuth";
 
 const Header = () => {
   const { user, logOut } = useAuth();
+
   return (
     <div className=" main-menu sticky-top">
       <Navbar sticky="top" bg="dark" expand="lg">
@@ -22,14 +23,18 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center">
               <Link to="/home">Home</Link>
-              <Link to="/myOrders">MyOrders</Link>
-              <Link to="/allOrders">All Orders</Link>
+
+              <Link to="/allEvents">AllEvents</Link>
               <Link to="/contact">Contact Us</Link>
 
               {user?.email ? (
-                <Button onClick={logOut} variant="dark">
-                  Logout
-                </Button>
+                <div className="ms-auto d-flex align-items-center">
+                  <Link to="/myOrders">MyOrders</Link>
+                  <Link to="/allOrders">All Orders</Link>
+                  <Button onClick={logOut} variant="dark">
+                    Logout
+                  </Button>
+                </div>
               ) : (
                 <Link to="/login">Login</Link>
               )}
